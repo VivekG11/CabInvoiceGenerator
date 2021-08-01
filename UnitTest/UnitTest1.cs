@@ -19,5 +19,29 @@ namespace UnitTest
             double excepted = 76;
             Assert.AreEqual(excepted, fare);
         }
+
+        [TestMethod]
+        public void MultipleRides()
+        {
+            try
+            {
+                //Arrange
+                InvoiceGenerator getInvoice = new InvoiceGenerator(RideType.NORMAL);
+                Ride[] rides = { new Ride(5.2, 10), new Ride(6.3, 10) };
+                double actual, expected = 135;
+                //Act
+                actual = getInvoice.MultipleFare(rides);
+
+                //Assert
+                Assert.AreEqual(actual, expected);
+
+            }
+            catch (InvoiceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+        }
     }
 }

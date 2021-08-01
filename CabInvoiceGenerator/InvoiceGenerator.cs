@@ -17,6 +17,7 @@ namespace CabInvoiceGenerator
         {
             this.type = type;
             try
+
             {
                 this.MIN_COST_PER_KM = 10;
                 this.COST_PER_MIN = 1;
@@ -47,6 +48,18 @@ namespace CabInvoiceGenerator
                 }
             }
             return Math.Max(totalFare, MIN_FARE);
+        }
+        public double MultipleFare(Ride[] rides)
+        {
+            double multipeFare = default;
+            if (rides.Length == 0)
+                throw new InvoiceException(InvoiceException.ExceptionType.INVALID_RIDE_LIST, "Invalid Ride List");
+
+            foreach(var i in rides)
+            {
+                multipeFare += CalculateFare(i.distance,i.time);
+            }
+            return multipeFare;
         }
     }
 }
