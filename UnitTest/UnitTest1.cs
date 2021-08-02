@@ -43,5 +43,28 @@ namespace UnitTest
 
 
         }
+        [TestMethod]
+        public void GetInvoiceDetails()
+        {
+            try
+            {
+                //Arrange
+                InvoiceGenerator getInvoice = new InvoiceGenerator(RideType.NORMAL);
+                Ride[] rides = { new Ride(5.6, 10), new Ride(6.4, 8) };
+                string actual, expected = "Total number of rides = 2 \n TotalFare =138 \n AverageFare = 69";
+                //Act
+                actual = getInvoice.InvoiceDetails(rides);
+
+                //Assert
+                Assert.AreEqual(actual, expected);
+
+            }
+            catch (InvoiceException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+        }
     }
 }

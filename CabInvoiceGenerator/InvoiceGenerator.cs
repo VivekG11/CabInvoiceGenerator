@@ -31,6 +31,7 @@ namespace CabInvoiceGenerator
         }
         public double CalculateFare(double distance, int time)
         {
+            
             double totalFare = 0;
             try
             {
@@ -60,6 +61,13 @@ namespace CabInvoiceGenerator
                 multipeFare += CalculateFare(i.distance,i.time);
             }
             return multipeFare;
+        }
+        public string InvoiceDetails(Ride[] rides)
+        {
+            double totFare = MultipleFare(rides);
+            InvoiceDetails details = new InvoiceDetails(rides.Length, totFare);
+            return $"Total number of rides are :"+details.numOfRides+" and totalFare is :"+details.totFare+" and average fare is :"+details.avgFare;
+            
         }
     }
 }
